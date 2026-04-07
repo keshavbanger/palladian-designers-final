@@ -1,7 +1,7 @@
 {
   "builds": [
     {
-      "src": "palladiun/wsgi.py",
+      "src": "palladian/wsgi.py",
       "use": "@vercel/python",
       "config": {
         "maxLambdaSize": "15mb",
@@ -20,7 +20,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "palladiun/wsgi.py"
+      "dest": "palladian/wsgi.py"
     }
   ]
 }
