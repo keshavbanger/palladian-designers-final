@@ -1,0 +1,357 @@
+{% load static %}
+<header class="prague-header simple sticky-menu sticky-mobile-menu {% if slider_img %} home-header {% else %} sub-page-header {% endif %} {% if header_dark %} dark {% endif %}">
+        <!--LOGO-->
+        <style>
+            .image_logo {
+                height: 110px !important; /* Increased from 90px as requested */
+                width: auto !important;
+                max-width: none !important;
+                object-fit: contain;
+                transition: all 0.3s ease;
+                filter: drop-shadow(0px 0px 4px rgba(255, 255, 255, 0.8)); /* White glow for visibility on dark/busy images */
+            }
+            .prague-logo-wrapper {
+                display: inline-block;
+                transition: all 0.3s ease;
+            }
+            .prague-logo-wrapper img {
+                pointer-events: auto;
+                transition: all 0.3s ease;
+            }
+            
+            /* Change logo color to WHITE for transparent header visibility */
+            header.prague-header:not(.scrolled-header) .image_logo {
+                filter: brightness(0) invert(1) !important; /* Forces dark logo to pure white */
+            }
+            
+            /* Initial State: Clean top-blend with white text */
+            header.prague-header:not(.scrolled-header) {
+                background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 100%) !important;
+                transition: all 0.3s ease;
+                padding-top: 15px !important;
+                padding-bottom: 25px !important;
+            }
+            
+            header.prague-header:not(.scrolled-header) .main-menu > li > a,
+            header.prague-header:not(.scrolled-header) .icon-mob-menu,
+            header.prague-header:not(.scrolled-header) .prague-social-nav a,
+            header.prague-header:not(.scrolled-header) span,
+            header.prague-header:not(.scrolled-header) i {
+                color: #ffffff !important;
+            }
+            header.prague-header:not(.scrolled-header) svg path {
+                fill: #ffffff !important;
+            }
+            
+            /* Scrolled State: Return to Theme Minimalism */
+            header.prague-header {
+                transition: background-color 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease, background 0.3s ease !important;
+            }
+            header.prague-header.scrolled-header {
+                background-color: rgba(255, 255, 255, 0.98) !important;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+                padding-top: 5px !important;
+                padding-bottom: 5px !important;
+            }
+            header.prague-header.scrolled-header .prague-logo-wrapper img {
+                filter: none !important; /* No glow needed on white header */
+            }
+            header.prague-header.scrolled-header .image_logo {
+                height: 90px !important; /* Original size when scrolled */
+            }
+            header.prague-header.scrolled-header .main-menu > li > a,
+            header.prague-header.scrolled-header .icon-mob-menu,
+            header.prague-header.scrolled-header .prague-social-nav a,
+            header.prague-header.scrolled-header span,
+            header.prague-header.scrolled-header i {
+                color: #111111 !important;
+            }
+            header.prague-header.scrolled-header svg path {
+                fill: #111111 !important;
+            }
+            header.prague-header .main-menu > li > a {
+                font-weight: 500 !important;
+                letter-spacing: 1px !important;
+            }
+            header.prague-header.scrolled-header .main-menu > li > a:hover {
+                color: var(--gold, #c5a059) !important;
+            }
+        </style>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const header = document.querySelector("header.prague-header");
+                function updateHeader() {
+                    if (window.scrollY > 40) {
+                        header.classList.add("scrolled-header");
+                    } else {
+                        header.classList.remove("scrolled-header");
+                    }
+                }
+                updateHeader();
+                window.addEventListener("scroll", updateHeader);
+            });
+        </script>
+        
+        <div class="prague-logo">
+            <a href="/" class="prague-logo-wrapper">
+                <img src="{% static 'img/home/palladian_1.png' %}" class="image_logo" alt="Palladian Designers Logo" />
+            </a>
+        </div>
+        <!--/LOGO-->
+        <!--/LOGO-->
+
+        <div class="prague-header-wrapper">
+
+            <!--NAVIGATION-->
+            <div class="prague-navigation">
+                <div class="pargue-navigation-wrapper">
+                    <div class="prague-navigation-inner">
+                        <nav>
+                            <ul class="main-menu">
+                                <li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children "><a
+                                        href="/">Home</a>
+                                    {% comment %} <ul class="sub-menu">
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-1599 current_page_item"><a
+                                                href="index.html">Main Home</a></li>
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="minimalist-home.html">Minimalist
+                                                Home</a></li>
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="onepage-home.html">OnePage
+                                                Home</a></li>
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="work-film-strip.html">Film
+                                                Strip</a></li>
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="work-category-list.html">Category
+                                                List</a></li>
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="revolution-slider.html">Revolution
+                                                Slider</a></li>
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="work-timeline-images.html">Timeline
+                                                Projects</a></li>
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="creative-banner.html">Creative
+                                                Banner</a></li>
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="projects.html">Projects</a></li>
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="parallax-presentation.html">Parallax
+                                                Presentation</a></li>
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="parallax-with-text.html">Parallax
+                                                With Text</a></li>
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="simple.html">Simple</a></li>
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="splitted-screen.html">Splitted
+                                                Screen</a></li>
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="splitted-creative-banner.html">Splitted
+                                                Creative Banner</a></li>
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="columns-gallery.html">Creative
+                                                gallery</a></li>
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="slider.html">Slider</a></li>
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="before-after.html">Before
+                                                &#038; After</a></li>
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="fullscreen-slider.html">Fullscreen
+                                                Slider</a></li>
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="video-background.html">Video
+                                                Background</a></li>
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="interior-design-showcase.html">Interior
+                                                Design Showcase</a></li>
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="carousel-showcase.html">Carousel
+                                                showcase</a></li>
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="split-slider.html">Split
+                                                Slider</a></li>
+                                    </ul> {% endcomment %}
+                                </li>
+                                {% comment %} <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{% url 'pricing-plan' %}">Pricing Plan</a></li> {% endcomment %}
+                                {% comment %} <li class="menu-item menu-item-type-custom menu-item-object-custom curemenu-item-has-children"><a
+                                        href="#">Pages</a>
+                                    <ul class="sub-menu">
+                                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children"><a
+                                                href="#">About</a>
+                                            <ul class="sub-menu">
+                                                <li class="menu-item menu-item-type-post_type menu-item-object-page"><a
+                                                        href="about-me.html">About Me</a></li>
+                                                <li class="menu-item menu-item-type-post_type menu-item-object-page"><a
+                                                        href="about-us.html">About Us</a></li>
+                                                <li class="menu-item menu-item-type-post_type menu-item-object-page"><a
+                                                        href="work-process.html">Work Process</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children"><a
+                                                href="services.html">Services</a>
+                                            <ul class="sub-menu">
+                                                <li class="menu-item menu-item-type-post_type menu-item-object-services"><a
+                                                        href="planning.html">Services Details</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="bibliography.html">Bibliography</a></li>
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="media.html">Media</a></li>
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="exhibition.html">Exhibition</a></li>
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="clients.html">Clients</a></li>
+                                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children"><a
+                                                href="#">Pricing</a>
+                                            <ul class="sub-menu">
+                                                <li class="menu-item menu-item-type-post_type menu-item-object-page"><a
+                                                        href="pricing-image.html">Pricing Image</a></li>
+                                                <li class="menu-item menu-item-type-post_type menu-item-object-page"><a
+                                                        href="pricing-simple.html">Pricing Simple</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children"><a
+                                                href="#">Contact</a>
+                                            <ul class="sub-menu">
+                                                <li class="menu-item menu-item-type-post_type menu-item-object-page"><a
+                                                        href="contact-me.html">Contact Me</a></li>
+                                                <li class="menu-item menu-item-type-post_type menu-item-object-page"><a
+                                                        href="contact-us.html">Contact Us</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children"><a
+                                                href="#">Other Pages</a>
+                                            <ul class="sub-menu">
+                                                <li class="menu-item menu-item-type-post_type menu-item-object-page"><a
+                                                        href="coming-soon.html">Coming Soon</a></li>
+                                                <li class="menu-item menu-item-type-post_type menu-item-object-page"><a
+                                                        href="protected-page.html">Protected Page</a></li>
+                                                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a
+                                                        href="404.html">Error Page</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children"><a
+                                        href="#">Projects</a>
+                                    <ul class="sub-menu">
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="work-list.html">Work
+                                                List</a></li>
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="work-grid.html">Work
+                                                Grid</a></li>
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="work-masonry.html">Work
+                                                Masonry</a></li>
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="work-film-strip.html">Work
+                                                Film Strip</a></li>
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="work-category-list.html">Work
+                                                Category List</a></li>
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="work-timeline-list.html">Work
+                                                Timeline List</a></li>
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="work-timeline-images.html">Work
+                                                Timeline Images</a></li>
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="work-pinterest.html">Work
+                                                Pinterest</a></li>
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="fullscreen-projects.html">Work
+                                                Fullscreen</a></li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children"><a
+                                        href="#">Project Details</a>
+                                    <ul class="sub-menu">
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-projects"><a
+                                                href="daniel-moore-appartaments.html">Parallax</a></li>
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-projects"><a
+                                                href="pastel-tones-design.html">Parallax With Text</a></li>
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-projects"><a
+                                                href="henders-tragers-villa.html">Simple</a></li>
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-projects"><a
+                                                href="stone-krow-house.html">Splitted Screen</a></li>
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-projects"><a
+                                                href="mountain-house.html">Splitted Creative Banner</a></li>
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-projects"><a
+                                                href="tycoon-office-interior-design.html">Columns Gallery</a></li>
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-projects"><a
+                                                href="alto-furniture.html">Slider</a></li>
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-projects"><a
+                                                href="alto-furniture-2.html">Before &#038; After</a></li>
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-projects"><a
+                                                href="luxurious-apartment.html">Fullscreen Slider</a></li>
+                                    </ul>
+                                </li> {% endcomment %}
+                                {% comment %} <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children"><a
+                                        href="shop.html">Shop</a>
+                                    <ul class="sub-menu">
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-product"><a href="soft-chair.html">Product
+                                                Details</a></li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children"><a
+                                        href="blog.html">Blog</a>
+                                    <ul class="sub-menu">
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="blog-list.html">Blog
+                                                List</a></li>
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-post"><a href="time-inc-architectura.html">Blog
+                                                Details</a></li>
+                                    </ul>
+                                </li> {% endcomment %}
+                                {% comment %} <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                <a href="{% url 'services' %}">Services</a>
+                                </li> {% endcomment %}
+                                <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                <a href="{% url 'about' %}">About Us</a>
+                                </li>
+                                <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                <a href="/#services">Services</a>
+                                </li>
+                                <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                <a href="{% url 'projects' %}">Projects</a>
+                                {% comment %} <ul class="sub-menu">
+                                        <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="{% url 'pricing-plan' %}">Pricing Plan</a></li>
+                                    </ul> {% endcomment %}
+                                </li>
+                                <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                <a href="{% url 'contactus' %}">Contact Us</a>
+                                </li>
+                                {% comment %} <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                <a href="{% url 'clients' %}">Our Associates</a>
+                                </li> {% endcomment %}
+                                {% comment %} <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">
+                                <a href="{% url 'careers_page' %}">Careers</a>
+                                </li> {% endcomment %}
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <!--/NAVIGATION-->
+       
+        {% if header_dark and show_filter %}
+        <div class="prague_filter_projects no-padd-bottom">
+        <div class="prague_filter_projects_wrapper">
+                <div class="prague_filter_item">
+                <h2 class="filter_item_title">CATEGORY</h2>
+                <ul class="filter_item_category" id="categoryList">
+                        <form method = "GET" action="{% url 'projects' %}" id="filterForm">
+                        {% for proj_cat in project_cat %}
+                                <li data-filter="" onclick="updateHiddenInput('{{ forloop.counter }}', '{{proj_cat.id}}')">{{ proj_cat.title }}</li>
+                                <input type="hidden" id="filter_val{{ forloop.counter }}" name="filter_val{{forloop.counter}}" />
+                        {% endfor %}
+                </ul>
+                </div>
+        </div>
+        <div class="prague_filter_link_wrapper">
+                <button class="filter-btn a-btn-2 simple" type="submit"><span class="a-btn-line"></span>FILTER </button>
+        </div>
+                        </form>
+        <div class="prague_filter_link_wrapper">
+                <a class="filter-clear-all" href="#">CLEAR ALL </a>
+        </div>
+        </div>
+
+        <div class="filter-nav">
+        <a href="#">
+                <i class="fa fa-filter" aria-hidden="true"></i>
+                FILTER </a>
+        </div>
+        {% endif %}
+
+            <!-- mobile icon -->
+            <div class="prague-nav-menu-icon">
+                <a href="#">
+                    <i></i>
+                </a>
+            </div>
+            <!-- /mobile icon -->
+
+        </div>
+    </header>
+<script>
+    function updateHiddenInput(index, id) {
+        var hiddenInput = document.getElementById("filter_val" + index);
+        // Assuming you want to set some specific value when the li is clicked
+        var newValue = id;
+        hiddenInput.value = newValue;
+    }
+    function submitForm() {
+        document.getElementById("filterForm").submit();
+    }
+</script>
